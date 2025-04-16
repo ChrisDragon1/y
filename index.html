@@ -1,248 +1,169 @@
-To add the logos next to each project name in your navigation menu, we need to modify the existing code. Specifically, we'll:
-
-1. Add a mapping of project names to their corresponding logo URLs.
-2. Update the navigation menu generation logic to include these logos dynamically.
-
-Here’s the updated version of your HTML file with the necessary changes:
-
----
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Video Library (Dynamic v6 - Lenient URL)</title> <!-- Version Bump -->
+    <title>Protocols with Logos</title>
     <style>
-        /* CSS Styles remain the same as v5 */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f0f0; line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        #loading-indicator { text-align: center; padding: 50px 20px; font-size: 1.2em; color: #555; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; margin: 30px 20px; }
-        #app-content { display: none; }
-        .nav-menu { background-color: #3498db; padding: 10px 0; margin-bottom: 20px; position: sticky; top: 0; z-index: 1000; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .nav-item { display: inline-block; margin: 0 8px; }
-        .nav-link { color: white; text-decoration: none; font-weight: bold; padding: 8px 12px; border-radius: 4px; transition: background-color 0.2s; display: flex; align-items: center; font-size: 0.95em; }
-        .nav-link:hover { text-decoration: none; background-color: #2980b9; }
-        .nav-logo { height: 20px; width: auto; margin-right: 8px; vertical-align: middle; display: block; }
-        .project-section { background-color: white; margin: 0 20px 30px 20px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); scroll-margin-top: 80px; }
-        .project-title { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-top: 0; display: flex; align-items: center; }
-        .project-logo { height: 28px; width: auto; margin-right: 12px; display: block; }
-        .video-list { list-style-type: none; padding: 0; margin-top: 20px; }
-        .video-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .video-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .video-link { color: #3498db; text-decoration: none; font-weight: bold; display: block; margin-bottom: 5px; }
-        .video-link:hover { text-decoration: underline; }
-        .video-date { color: #7f8c8d; font-size: 0.9em; display: block; }
-        :target { animation: highlight 1.5s ease-out; }
-        @keyframes highlight { from { background-color: #fff3cd; } to { background-color: white; } }
-        .no-videos, .error-message { color: #7f8c8d; font-style: italic; margin-top: 15px; text-align: center; padding: 20px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; }
-        .error-message { color: #dc3545; background-color: #f8d7da; border-color: #f5c6cb; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .protocol-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .protocol-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .protocol-item a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .protocol-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #00FF00; /* Green border as shown in the image */
+        }
+        .protocol-item a:hover {
+            color: #3498db; /* Add hover effect */
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="loading-indicator">Loading Project Videos...</div>
-        <div id="app-content"> <!-- Content generated here --> </div>
-        <div id="error-display" class="error-message" style="display: none;"></div>
+    <div class="protocol-list">
+        <!-- Each protocol item -->
+        <div class="protocol-item">
+            <a href="https://example.com/titan-blaze" target="_blank">
+                <img src="logos/titan-blaze.png" alt="Titan Blaze Logo">
+                Titan Blaze
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/bonfire" target="_blank">
+                <img src="logos/bonfire.png" alt="Bonfire Logo">
+                Bonfire
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/shogun" target="_blank">
+                <img src="logos/shogun.png" alt="Shogun Logo">
+                Shogun
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/titan-x" target="_blank">
+                <img src="logos/titan-x.png" alt="Titan X Logo">
+                Titan X
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/goat-x" target="_blank">
+                <img src="logos/goat-x.png" alt="Goat X Logo">
+                Goat X
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/morpheus" target="_blank">
+                <img src="logos/morpheus.png" alt="Morpheus Logo">
+                Morpheus
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/bitcoin-genie" target="_blank">
+                <img src="logos/bitcoin-genie.png" alt="Bitcoin Genie Logo">
+                Bitcoin Genie
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/shaolin" target="_blank">
+                <img src="logos/shaolin.png" alt="Shaolin Logo">
+                Shaolin
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/phoenix" target="_blank">
+                <img src="logos/phoenix.png" alt="Phoenix Logo">
+                Phoenix
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/awesomex" target="_blank">
+                <img src="logos/awesomex.png" alt="AwesomeX Logo">
+                AwesomeX
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/vyper" target="_blank">
+                <img src="logos/vyper.png" alt="Vyper Logo">
+                Vyper
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/alien-x" target="_blank">
+                <img src="logos/alien-x.png" alt="Alien X Logo">
+                Alien X
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/volt" target="_blank">
+                <img src="logos/volt.png" alt="Volt Logo">
+                Volt
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/flux" target="_blank">
+                <img src="logos/flux.png" alt="Flux Logo">
+                Flux
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/dragon-x" target="_blank">
+                <img src="logos/dragon-x.png" alt="Dragon X Logo">
+                Dragon X
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/inferno" target="_blank">
+                <img src="logos/inferno.png" alt="Inferno Logo">
+                Inferno
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/eden" target="_blank">
+                <img src="logos/eden.png" alt="Eden Logo">
+                Eden
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/lotus" target="_blank">
+                <img src="logos/lotus.png" alt="Lotus Logo">
+                Lotus
+            </a>
+        </div>
+        <div class="protocol-item">
+            <a href="https://example.com/smoke" target="_blank">
+                <img src="logos/smoke.png" alt="Smoke Logo">
+                Smoke
+            </a>
+        </div>
     </div>
-    <script>
-        // --- Data Configuration (Keep as is) ---
-        const rawData = `Titan X Volt Genie Turbo Bonfire Ascendant Shaolin Phoenix Goat X Vyper Tinc Awesome X shogun Eden Inferno Flux Lotus Alien X https://x.com/stevedefi7/status/1889978808838828365 https://x.com/DEFIVOLT/status/1865378239079649491 http://x.com/GenieofBitcoin/status/1890736245250064660 https://x.com/DEFIVOLT/status/1865128507677765818/video/1 https://x.com/bonfirex28/status/1885069997258461387 https://x.com/TraderLi/status/1881740630025474449 https://x.com/ShaolinXDeFi/status/1877867235378639304 https://x.com/TeamPhoenixWin/status/1878096271761641753 https://x.com/Irishcrypto4/status/1873346605354799139 https://x.com/DEFIVOLT/status/1869759697689162153/video/1 https://x.com/DEFIVOLT/status/1869509928043548971 https://x.com/AwesomeXwins/status/1864842043559723287 https://x.com/OGXenian/status/1859342345394679902 https://x.com/ShaolinXDeFi/status/1857436863784435885 https://x.com/InfernoBullWin/status/1855551435343069270 https://x.com/BADSPORTSLABS/status/1853163226110021985 https://x.com/ShaolinXDeFi/status/1848117529308225576 https://x.com/BADSPORTSLABS/status/1846520759633559589 https://x.com/stevedefi7/status/1889770327376306610 https://x.com/DEFIVOLT/status/1853399116228768245 http://x.com/GenieofBitcoin/status/1885505019304124734 https://x.com/DEFIVOLT/status/1863393551939199303/video/1 https://x.com/TraderLi/status/1879831091701272824 https://x.com/ShaolinXDeFi/status/1877498519625322802 https://x.com/TeamPhoenixWin/status/1873396664658194456 https://x.com/DEFIVOLT/status/1869090140397945097/video/1 https://x.com/DEFIVOLT/status/1865890554078171602 https://x.com/AwesomeXwins/status/1862267075307172298 https://x.com/ShaolinXDeFi/status/1857075293296505026 https://x.com/InfernoBullWin/status/1854261152399958172 https://x.com/BADSPORTSLABS/status/1853090359053533220 https://x.com/ShaolinXDeFi/status/1847807818616672748 https://x.com/stevedefi7/status/1888191305182060674 https://x.com/DEFIVOLT/status/1852687396749390260 http://x.com/DEFIVOLT/status/1877149638182023492/video/1 https://x.com/WarriorSoul8888/status/1876627463972741404 https://x.com/TeamPhoenixWin/status/1867968160827404796 https://x.com/DEFIVOLT/status/1870133827726872688/video/1 https://x.com/AwesomeXwins/status/1859703586663563350 https://x.com/BADSPORTSLABS/status/1848809794725167207 https://x.com/BADSPORTSLABS/status/1847610579785064782 https://x.com/ShaolinXDeFi/status/1847063085925675089 https://x.com/stevedefi7/status/1886165345020543364 https://x.com/DEFIVOLT/status/1852565486971617651 http://x.com/DEFIVOLT/status/1877149638182023492 https://x.com/TeamPhoenixWin/status/1867189629570486312 https://x.com/DEFIVOLT/status/1870470517645595127 https://x.com/CryptoAwesomely/status/1857419025019465895 https://x.com/ShaolinXDeFi/status/1845944249616936997 https://x.com/stevedefi7/status/1885467132932104363 https://x.com/TeamPhoenixWin/status/1865792356856766902 https://x.com/DEFIVOLT/status/1869179511725867299 https://x.com/AwesomeXwins/status/1856376901067055337 https://x.com/DEFIVOLT/status/1868939350068936767/video/1 https://x.com/TeamPhoenixWin/status/1864006412067574096 https://x.com/DEFIVOLT/status/1868813133550436771/video/1 https://x.com/AwesomeXwins/status/1854613794485682570 https://x.com/DEFIVOLT/status/1868824186082541913/video/1 https://x.com/YoungStunnersss/status/1852235153260609873 https://x.com/DEFIVOLT/status/1862844964893274459/video/1 https://x.com/BADSPORTSLABS/status/1863199228421349382 https://x.com/DEFIVOLT/status/1869393318658093424 https://x.com/CryptoAwesomely/status/1852001203879575688 https://x.com/DEFIVOLT/status/1866093137896288697/video/1 https://x.com/TeamPhoenixWin/status/1861870732533174487 https://x.com/DEFIVOLT/status/1868939350068936767 https://x.com/CryptoAwesomely/status/1851665703331598668 https://x.com/DEFIVOLT/status/1865890554078171602/video/1 https://x.com/TeamPhoenixWin/status/1861090584191983879 https://x.com/DEFIVOLT/status/1868813133550436771 https://x.com/AwesomeXwins/status/1851264070948962634 https://x.com/DEFIVOLT/status/1865378239079649491/video/1 https://x.com/DEFIVOLT/status/1866140933617508723 https://x.com/HQMORPH/status/1873415806358548644 https://x.com/YoungStunnersss/status/1851232501941109210 https://x.com/DEFIVOLT/status/1862276723829539197 https://x.com/DEFIVOLT/status/1861414044961325469 https://x.com/stevedefi7/status/1865149383269839168 https://x.com/DEFIVOLT/status/1861103389481779627 https://x.com/DEFIVOLT/status/1850989795675115927 https://x.com/DEFIVOLT/status/1860987425092178274 https://x.com/DEFIVOLT/status/1849937867969073605 https://x.com/DEFIVOLT/status/1848650254016446748 https://x.com/DEFIVOLT/status/1858702568777548275 https://x.com/DEFIVOLT/status/1849957575028044287 https://x.com/DEFIVOLT/status/1848301692921463101 https://x.com/DEFIVOLT/status/1858447132304331000 https://x.com/DEFIVOLT/status/1849821229504422162 https://x.com/DEFIVOLT/status/1848040441750372464 https://x.com/DEFIVOLT/status/1858181200059269543 https://x.com/DEFIVOLT/status/1848460017189507245 https://x.com/DEFIVOLT/status/1847980852476604604 https://x.com/DEFIVOLT/status/1857765776972824864 https://x.com/BADSPORTSLABS/status/1849393982603710694 https://x.com/DEFIVOLT/status/1847363848723960002 https://x.com/DEFIVOLT/status/1857569622603468979 https://x.com/BADSPORTSLABS/status/1848103583515824397 https://x.com/DEFIVOLT/status/1847103855361757539 https://x.com/DEFIVOLT/status/1857178548878094363 https://x.com/DEFIVOLT/status/1846270583602139249 https://x.com/DEFIVOLT/status/1846230744709915079 https://x.com/DEFIVOLT/status/1856343968021115330 https://x.com/DEFIVOLT/status/1846813821966413863 https://x.com/DEFIVOLT/status/1856039292541260060 https://x.com/DEFIVOLT/status/1846664074421293221 https://x.com/DEFIVOLT/status/1855771819984437451 https://x.com/DEFIVOLT/status/1846496479722033225 https://x.com/DEFIVOLT/status/1855171571532333411 https://x.com/DEFIVOLT/status/1846194177131811167 https://x.com/DEFIVOLT/status/1855084888686252085 https://x.com/DEFIVOLT/status/1846061235516682315 https://x.com/DEFIVOLT/status/1855064563747553517 https://x.com/DEFIVOLT/status/1845822158448058397 https://x.com/DEFIVOLT/status/1854854751353024930 https://x.com/DEFIVOLT/status/1845744072742273072 https://x.com/DEFIVOLT/status/1854083901196476695 https://x.com/DEFIVOLT/status/1845560752637428209 https://x.com/DEFIVOLT/status/1853776598257783290 https://x.com/DEFIVOLT/status/1845167790728056856 https://x.com/DEFIVOLT/status/1853450369076023372 https://x.com/DEFIVOLT/status/1845006487430611184 https://x.com/DEFIVOLT/status/1853261442767520119 https://x.com/DEFIVOLT/status/1844981709734818192 https://x.com/DEFIVOLT/status/1852998319263387707 https://x.com/DEFIVOLT/status/1844844495336300629 https://x.com/DEFIVOLT/status/1854348777898864759 https://x.com/DEFIVOLT/status/1844677949305299350 https://x.com/DEFIVOLT/status/1845935713931395555 https://x.com/DEFIVOLT/status/1844528000450089306 https://x.com/stevedefi7/status/1844396816521117854 https://x.com/DEFIVOLT/status/1844403728922837322 https://x.com/DEFIVOLT/status/1844154514762498188 https://x.com/DEFIVOLT/status/1844175794844860650 https://x.com/DEFIVOLT/status/1843868927061045605 https://x.com/DEFIVOLT/status/1843695828822536213 https://x.com/DEFIVOLT/status/1843610181059670280 https://x.com/DEFIVOLT/status/1843544290951299360 https://x.com/DEFIVOLT/status/1843466027377561996 https://x.com/DEFIVOLT/status/1843314563867202046 https://x.com/DEFIVOLT/status/1843196464266137848 https://x.com/DEFIVOLT/status/1843235972726882685 https://x.com/DEFIVOLT/status/1843001360243195914 https://x.com/DEFIVOLT/status/1843108643878899993 https://x.com/DEFIVOLT/status/1843091541998674206 https://x.com/DEFIVOLT/status/1842870492610314526 https://x.com/DEFIVOLT/status/1842857786729771345 https://x.com/DEFIVOLT/status/1841802047605129351 https://x.com/DEFIVOLT/status/1841741551002587149 https://x.com/DEFIVOLT/status/1841585703953592327 https://x.com/DEFIVOLT/status/1841287005403070970 https://x.com/DEFIVOLT/status/1841134035709350117 https://x.com/HQMORPH/status/1904162009702191458 https://x.com/HQMORPH/status/1903837091186032689 https://x.com/HQMORPH/status/1903459911184314581 https://x.com/HQMORPH/status/1903458941717069836 https://x.com/HQMORPH/status/1904198770952146963 https://x.com/stevedefi7/status/1906054263089905838 https://x.com/Irishcrypto4/status/1865356837182124441 https://x.com/Irishcrypto4/status/1863695272238252494 https://x.com/HQMORPH/status/1904168293465829428 https://x.com/PumpUranus/status/1912142027862450643 https://x.com/HQMORPH/status/1888275111574208928`;
-
-        // Fallback mapping
-        const handleToProjectFallback = {
-            "stevedefi7": "Titan Blaze",
-            "DEFIVOLT": "Volt",
-            "GenieofBitcoin": "Bitcoin Genie",
-            "bonfirex28": "Bonfire",
-            "TraderLi": "Shogun",
-            "ShaolinXDeFi": "Shaolin",
-            "TeamPhoenixWin": "Phoenix",
-            "Irishcrypto4": "AwesomeX",
-            "OGXenian": "Goat X",
-            "InfernoBullWin": "Inferno",
-            "BADSPORTSLABS": "Dragon X",
-            "HQMORPH": "Morpheus",
-            "AwesomeXwins": "Vyper",
-            "WarriorSoul8888": "Lotus",
-            "CryptoAwesomely": "Eden",
-            "YoungStunnersss": "Alien X"
-        };
-
-        // *** LOGO CONFIGURATION ***
-        const projectLogos = {
-            "Titan Blaze": "https://example.com/titan-blaze-logo.png",
-            "Volt": "https://example.com/volt-logo.png",
-            "Bitcoin Genie": "https://example.com/bitcoin-genie-logo.png",
-            "Bonfire": "https://example.com/bonfire-logo.png",
-            "Shogun": "https://example.com/shogun-logo.png",
-            "Shaolin": "https://example.com/shaolin-logo.png",
-            "Phoenix": "https://example.com/phoenix-logo.png",
-            "AwesomeX": "https://example.com/awesome-x-logo.png",
-            "Goat X": "https://example.com/goat-x-logo.png",
-            "Inferno": "https://example.com/inferno-logo.png",
-            "Dragon X": "https://example.com/dragon-x-logo.png",
-            "Morpheus": "https://example.com/morpheus-logo.png",
-            "Vyper": "https://example.com/vyper-logo.png",
-            "Lotus": "https://example.com/lotus-logo.png",
-            "Eden": "https://example.com/eden-logo.png",
-            "Alien X": "https://example.com/alien-x-logo.png"
-        };
-        const defaultLogo = 'https://via.placeholder.com/30/cccccc/FFFFFF?text=?';
-
-        // --- Helper Functions ---
-        function normalizeUrl(url) {
-             // *** THIS IS THE NEW, LENIENT VERSION ***
-            if (!url || typeof url !== 'string') return null;
-            url = url.trim(); // Trim whitespace
-            // Fix common protocol typos first
-            url = url.replace(/^htps:/, 'https://');
-            url = url.replace(/^htp:/, 'https://');
-             // Ensure http is converted AFTER fixing typos
-             url = url.replace(/^http:/, 'https://');
-            // If it doesn't start with https://x.com now, it's probably invalid
-             if (!url.startsWith('https://x.com/')) {
-                 // console.warn(`URL invalid or non-X link: ${url}`);
-                 return null;
-             }
-             // Very basic check: must contain /status/ followed by numbers
-             if (!/\/status\/\d+/.test(url)) {
-                 // console.warn(`URL lacks /status/ or digits after it: ${url}`);
-                 return null;
-             }
-             // Attempt to return the URL mostly as is, just cleaned protocol
-             // We are removing strict path checking and query/hash removal for now
-             // This might allow slightly malformed URLs but avoids over-filtering
-             try {
-                 // Check if it's a valid URL format at all
-                 new URL(url);
-                 return url; // Return the URL if it passes basic checks
-             } catch(e) {
-                 // console.warn(`Could not parse URL: ${url}`, e);
-                 return null; // Failed basic URL parsing
-             }
-        }
-
-        function extractStatusId(url) {
-            if (!url) return null;
-            try {
-                // Match /status/ followed by one or more digits
-                const match = url.match(/\/status\/(\d+)/);
-                if (match && match[1]) {
-                    return BigInt(match[1]);
-                }
-            } catch (e) { console.error(`Error extracting status ID from ${url}`, e); }
-            // console.warn(`Could not extract status ID from: ${url}`); // Log if needed
-            return null;
-        }
-
-        function getHandle(url) {
-            if (!url) return null;
-            try {
-                const parsedUrl = new URL(url);
-                const handle = parsedUrl.pathname.split('/')[1];
-                return handle || null;
-            } catch (e) { console.error(`Error getting handle from ${url}`, e); }
-            return null;
-        }
-
-        function getApproxDateFromStatusId(statusId) {
-            // Implementation as per previous version
-        }
-
-        function formatDisplayDate(date) {
-            // Implementation as per previous version
-        }
-
-        function slugify(text) {
-            // Implementation as per previous version
-        }
-
-        // --- Main Processing Logic ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const appContentDiv = document.getElementById('app-content');
-            const loadingIndicator = document.getElementById('loading-indicator');
-            const errorDisplay = document.getElementById('error-display');
-            if (!appContentDiv || !loadingIndicator || !errorDisplay) {
-                console.error("DOM elements not found.");
-                return;
-            }
-
-            try {
-                // --- Data Processing Steps 1-3 (Keep as is from previous version) ---
-                const finalProjectNameMapping = {};
-                function getFinalProjectName(name) {
-                    return finalProjectNameMapping[name] || name;
-                }
-
-                const explicitAssignments = {
-                    "Titan X": ["https://x.com/DEFIVOLT/status/1865128507677765818/video/1"],
-                    "Volt": ["https://x.com/DEFIVOLT/status/1865378239079649491"],
-                    "Bitcoin Genie": ["https://x.com/GenieofBitcoin/status/1890736245250064660"],
-                    "Bonfire": ["https://x.com/bonfirex28/status/1885069997258461387"],
-                    "Shogun": ["https://x.com/TraderLi/status/1881740630025474449"],
-                    "Shaolin": ["https://x.com/ShaolinXDeFi/status/1877867235378639304"],
-                    "Phoenix": ["https://x.com/TeamPhoenixWin/status/1878096271761641753"],
-                    "AwesomeX": ["https://x.com/Irishcrypto4/status/1873346605354799139"],
-                    "Goat X": ["https://x.com/OGXenian/status/1859342345394679902"],
-                    "Inferno": ["https://x.com/InfernoBullWin/status/1855551435343069270"],
-                    "Dragon X": ["https://x.com/BADSPORTSLABS/status/1853163226110021985"],
-                    "Morpheus": ["https://x.com/HQMORPH/status/1873415806358548644"],
-                    "Vyper": ["https://x.com/DEFIVOLT/status/1862276723829539197"],
-                    "Lotus": ["https://x.com/WarriorSoul8888/status/1876627463972741404"],
-                    "Eden": ["https://x.com/CryptoAwesomely/status/1857419025019465895"],
-                    "Alien X": ["https://x.com/YoungStunnersss/status/1851232501941109210"]
-                };
-
-                const assignedUrls = new Set();
-                Object.values(explicitAssignments).forEach(urlSet => {
-                    urlSet.forEach(url => {
-                        if (url) assignedUrls.add(url);
-                    });
-                });
-
-                const urls = rawData.split(/\s+/);
-                urls.forEach(rawUrl => {
-                    const normalizedUrl = normalizeUrl(rawUrl);
-                    if (normalizedUrl) {
-                        const handle = getHandle(normalizedUrl);
-                        const projectName = handleToProjectFallback[handle] || "Unknown";
-                        const finalName = getFinalProjectName(projectName);
-                        if (!explicitAssignments[finalName]) {
-                            explicitAssignments[finalName] = [];
-                        }
-                        explicitAssignments[finalName].push(normalizedUrl);
-                    }
-                });
-
-                const projects = {};
-                let totalValidVideos = 0;
-
-                for (const initialProjectName in explicitAssignments) {
-                    const finalName = getFinalProjectName(initialProjectName);
-                    projects[finalName] = explicitAssignments[initialProjectName];
-                    totalValidVideos += projects[finalName].length;
-                }
-
-                // --- Check if any projects/videos were found ---
-                if (Object.keys(projects).length === 0 || totalValidVideos === 0) {
-                    console.error("No valid projects with videos found after processing all data.");
-                    errorDisplay.textContent = 'No valid project data found to display. Please check the data source and assignments in the script. The URL normalization might be too strict, or Status IDs could not be extracted.';
-                    errorDisplay.style.display = 'block';
-                    loadingIndicator.style.display = 'none';
-                    return;
-                }
-
-                // --- Rendering Steps 4-6 (Keep as is) ---
-                const sortedProjectNames = Object.keys(projects).sort((a, b) => a.localeCompare(b));
-                appContentDiv.innerHTML = ''; // Clear before rendering
-
-                // 5. Generate Navigation Menu
-                try {
-                    const navMenu = document.createElement('div');
-                    navMenu.className = 'nav-menu';
-                    sortedProjectNames.forEach(projectName => {
-                        const navItem = document.createElement('span');
-                        navItem.className = 'nav-item';
-                        const navLink = document.createElement('a');
+</body>
+</html>
